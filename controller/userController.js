@@ -50,6 +50,15 @@ const userController = {
             myResponse.error({ res, data: error })
         }
     },
+    async post(req, res) {
+        try {
+            const allUser = await User.findAll({ include: 'post' });
+
+            return myResponse.success({ res, status: enums.success, data: allUser ?? [], });
+        } catch (error) {
+            myResponse.error({ res, data: error })
+        }
+    },
 }
 
 module.exports = userController
