@@ -7,13 +7,18 @@ const { User } = require('./models');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    return res.json('masuk pak eko');
+app.get('/users', async (req, res) => {
+    try {
+        const allUser = await User.findAll();
+
+        return res.json(allUser);
+    } catch (erro) {
+        console.log(erro)
+    }
 });
 
 app.post('/users/create', async (req, res) => {
     const { name, email, password } = req.body;
-    console.log(req.body)
 
     try {
         const newUser = await User.create({
