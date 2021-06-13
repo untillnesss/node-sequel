@@ -1,6 +1,6 @@
 const enums = require('./enums')
 
-module.exports = {
+const utils = {
     success({ res, data }) {
         return res.json({
             status: enums.success,
@@ -20,3 +20,5 @@ module.exports = {
         });
     }
 }
+
+module.exports = utils

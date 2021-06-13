@@ -3,7 +3,7 @@ const { User } = require('../models');
 const myResponse = require('../utils')
 const enums = require('../enums')
 
-module.exports = {
+const userController = {
     async index(req, res) {
         try {
             const allUser = await User.findAll();
@@ -26,4 +26,15 @@ module.exports = {
             myResponse.error({ res, data: error })
         }
     },
+    async show(req, res) {
+        try {
+            const allUser = await User.findAll();
+
+            return myResponse.success({ res, status: enums.success, data: allUser, });
+        } catch (error) {
+            myResponse.error({ res, data: error })
+        }
+    },
 }
+
+module.exports = userController
