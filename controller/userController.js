@@ -36,6 +36,20 @@ const userController = {
             myResponse.error({ res, data: error })
         }
     },
+    async delete(req, res) {
+        let params = req.params;
+        try {
+            const user = await User.destroy({
+                where: {
+                    id: params.id
+                }
+            });
+
+            return myResponse.success({ res, status: enums.success, data: user ?? [], });
+        } catch (error) {
+            myResponse.error({ res, data: error })
+        }
+    },
 }
 
 module.exports = userController
