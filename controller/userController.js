@@ -8,7 +8,7 @@ const userController = {
         try {
             const allUser = await User.findAll();
 
-            return myResponse.success({ res, status: enums.success, data: allUser, });
+            return myResponse.success({ res, status: enums.success, data: allUser ?? [], });
         } catch (error) {
             myResponse.error({ res, data: error })
         }
@@ -31,7 +31,7 @@ const userController = {
         try {
             const user = await User.findByPk(params.id);
 
-            return myResponse.success({ res, status: enums.success, data: user, });
+            return myResponse.success({ res, status: enums.success, data: user ?? [], });
         } catch (error) {
             myResponse.error({ res, data: error })
         }
