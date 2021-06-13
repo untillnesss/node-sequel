@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const { User } = require('./models');
+const myResponse = require('./utils')
+const enums = require('./enums')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -11,9 +13,9 @@ app.get('/users', async (req, res) => {
     try {
         const allUser = await User.findAll();
 
-        return res.json(allUser);
-    } catch (erro) {
-        console.log(erro)
+        return myResponse.success({ res, status: enums.success, data: allUser, });
+    } catch (error) {
+        myResponse.error({ res, data: error })
     }
 });
 
@@ -25,9 +27,9 @@ app.post('/users/create', async (req, res) => {
             name, email, password,
         });
 
-        return res.json(newUser);
-    } catch (erro) {
-        console.log(erro)
+        return myResponse.success({ res, data: newUser });
+    } catch (error) {
+        myResponse.error({ res, data: error })
     }
 });
 
