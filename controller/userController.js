@@ -27,10 +27,11 @@ const userController = {
         }
     },
     async show(req, res) {
+        let params = req.params;
         try {
-            const allUser = await User.findAll();
+            const user = await User.findByPk(params.id);
 
-            return myResponse.success({ res, status: enums.success, data: allUser, });
+            return myResponse.success({ res, status: enums.success, data: user, });
         } catch (error) {
             myResponse.error({ res, data: error })
         }
