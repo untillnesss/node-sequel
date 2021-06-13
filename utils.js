@@ -1,22 +1,25 @@
 const enums = require('./enums')
 
 const utils = {
-    success({ res, data }) {
+    success({ res, data, message = 'Berhasil !' }) {
         return res.json({
             status: enums.success,
-            data
+            data,
+            message
         });
     },
-    error({ res, data }) {
+    error({ res, data, message = 'Error !' }) {
         return res.json({
             status: enums.error,
-            data
+            data,
+            message
         });
     },
-    fail({ res, data }) {
+    fail({ res, data, message = 'Gagal !' }) {
         return res.json({
             status: enums.fail,
-            data
+            data,
+            message
         });
     }
 }
